@@ -47,16 +47,22 @@
 
             function checkForMatch() {
                 const [card1, card2] = flippedCards;
-                
-                if (card1.dataset.symbol === card2.dataset.symbol) {
+
+                if (card1.dataset.index === card2.dataset.index) {
+                    card1.classList.remove('flipped');
+                    card2.classList.remove('flipped');
+                    messageDisplay.textContent = "Carta já virada!!";
+                }else {
+                    if (card1.dataset.symbol === card2.dataset.symbol) {
                     card1.classList.add('matched');
                     card2.classList.add('matched');
                     matchedCards += 2; 
                     messageDisplay.textContent = "Par encontrado!";
-                } else {
-                    card1.classList.remove('flipped');
-                    card2.classList.remove('flipped');
-                    messageDisplay.textContent = "Tente novamente.";
+                    } else {
+                        card1.classList.remove('flipped');
+                        card2.classList.remove('flipped');
+                        messageDisplay.textContent = "Tente novamente.";
+                    }
                 }
 
                 flippedCards = [];
