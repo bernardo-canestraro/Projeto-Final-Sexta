@@ -88,7 +88,29 @@ document.addEventListener('DOMContentLoaded', () => {
         createBoard();
     }
 
+<<<<<<< HEAD
     restartBtn.addEventListener('click', restartGame);
+=======
+            function checkForMatch() {
+                const [card1, card2] = flippedCards;
+
+                if (card1.dataset.index === card2.dataset.index) {
+                    card1.classList.remove('flipped');
+                    card2.classList.remove('flipped');
+                    messageDisplay.textContent = "Carta já virada!!";
+                }else {
+                    if (card1.dataset.symbol === card2.dataset.symbol) {
+                    card1.classList.add('matched');
+                    card2.classList.add('matched');
+                    matchedCards += 2; 
+                    messageDisplay.textContent = "Par encontrado!";
+                    } else {
+                        card1.classList.remove('flipped');
+                        card2.classList.remove('flipped');
+                        messageDisplay.textContent = "Tente novamente.";
+                    }
+                }
+>>>>>>> 80d6fc47c5f1d745f01d5d45106e8585aa9964b1
 
     createBoard();
 });
