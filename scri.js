@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const acertosDisplay = document.getElementById('acertos');
     const errosDisplay = document.getElementById('erros');
     const restartBtn = document.getElementById('restartBtn');
-
+    //Botõess, Gameboard, Mensagem, Acertos e Erros
     const cardsArray = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D'];
     let flippedCards = [];
     let matchedCards = 0;
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             card.classList.add('card');
             card.dataset.symbol = symbol;
             card.dataset.index = index;
-
+            // Busca as imagens na pasta img de acordo com o símbolo
             const img = document.createElement('img');
             img.src = `./img/${symbol}.png`;
             img.alt = symbol;
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const [card1, card2] = flippedCards;
 
         if (card1.dataset.index === card2.dataset.index) {
-            // Mesma carta clicada duas vezes
+            // Corrige o problema de clicar na Mesma carta duas vezes e ele dar Par encontrado
             card1.classList.remove('flipped');
             messageDisplay.textContent = "Carta já virada!";
         } else if (card1.dataset.symbol === card2.dataset.symbol) {
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             acertos++;
             acertosDisplay.textContent = acertos;
             messageDisplay.textContent = "Par encontrado!";
-
+            //Timeout para a mensagem "par encontrado" desaparecer
             setTimeout(() => {
                 messageDisplay.textContent = "";
             }, 1000);
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
             erros++;
             errosDisplay.textContent = erros;
             messageDisplay.textContent = "Tente novamente.";
-
+            //Timeout para a mensagem "tente Novamente" desaparecer 
             setTimeout(() => {
                 messageDisplay.textContent = "";
             }, 1000);
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
             messageDisplay.textContent = "Parabéns! Você encontrou todos os pares!";
         }
     }
-
+    // Função para reiniciar o jogo
     function restartGame() {
         matchedCards = 0;
         acertos = 0;
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lockBoard = false;
         createBoard();
     }
-
+    // Adiciona o evento de clique ao botão de reiniciar
     restartBtn.addEventListener('click', restartGame);
 
     createBoard();
