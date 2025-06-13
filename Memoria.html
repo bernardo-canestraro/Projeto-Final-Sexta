@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt-BR"
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo da Memória</title>
 </head>
 <body>
-    <div class="container"
-        <h1>Jogo da Memória</H1>
+    <div class="container">
+        <h1>Jogo da Memória</h1>
         <div class="game-board" id="gameBoard"></div>
-        <p id="message"></p
+        <p id="message"></p>
     </div>
     <script>
         // JavaScript para o Jogo da Memória
@@ -17,9 +17,9 @@
             const gameBoard = document.getElementById('gameBoard');
             const messageDisplay = document.getElementById('message');
 
-            const cardsArray = ['A', 'A', 'B', 'B', 'C', 'C', 'D']; 
+            const cardsArray = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D']; 
             let flippedCards = [];
-            var matchedCards = 0; 
+            let matchedCards = 0; 
             
             let lockBoard = false;
 
@@ -39,7 +39,7 @@
                     card.dataset.index = index;
                     card.textContent = symbol; // Conteúdo que será visível quando virado
                     card.addEventListener('click', flipCard);
-                    gameBoard.append(card); 
+                    gameBoard.appendChild(card); 
                 });
             }
 
@@ -65,7 +65,7 @@
                 if (card1.dataset.symbol === card2.dataset.symbol) {
                     card1.classList.add('matched');
                     card2.classList.add('matched');
-                    matchedCards += 1; 
+                    matchedCards += 2; 
                     messageDisplay.textContent = "Par encontrado!";
                 } else {
                     card1.classList.remove('flipped');
