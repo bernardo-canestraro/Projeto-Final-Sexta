@@ -27,7 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
             card.classList.add('card');
             card.dataset.symbol = symbol;
             card.dataset.index = index;
-            card.textContent = symbol;
+
+            const img = document.createElement('img');
+            img.src = `./img/${symbol}.png`;
+            img.alt = symbol;
+
+            card.appendChild(img);
             card.addEventListener('click', flipCard);
             gameBoard.appendChild(card);
         });
@@ -35,7 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function flipCard(event) {
         if (lockBoard) return;
-        const clickedCard = event.target;
+
+        const clickedCard = event.currentTarget;
 
         if (flippedCards.length < 2 && !clickedCard.classList.contains('matched') && !clickedCard.classList.contains('flipped')) {
             clickedCard.classList.add('flipped');
@@ -43,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (flippedCards.length === 2) {
                 lockBoard = true;
-                setTimeout(checkForMatch, 100);
+                setTimeout(checkForMatch, 800);
             }
         }
     }
@@ -51,26 +57,36 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkForMatch() {
         const [card1, card2] = flippedCards;
 
-        if (card1.dataset.symbol === card2.dataset.symbol) {
+        if (card1.dataset.index === card2.dataset.index) {
+            // Mesma carta clicada duas vezes
+            card1.classList.remove('flipped');
+            messageDisplay.textContent = "Carta já virada!";
+        } else if (card1.dataset.symbol === card2.dataset.symbol) {
             card1.classList.add('matched');
             card2.classList.add('matched');
             matchedCards += 2;
             acertos++;
             acertosDisplay.textContent = acertos;
             messageDisplay.textContent = "Par encontrado!";
+
+            setTimeout(() => {
+                messageDisplay.textContent = "";
+            }, 1000);
         } else {
             card1.classList.remove('flipped');
             card2.classList.remove('flipped');
             erros++;
             errosDisplay.textContent = erros;
             messageDisplay.textContent = "Tente novamente.";
+
             setTimeout(() => {
                 messageDisplay.textContent = "";
-            }, 2000); 
+            }, 1000);
         }
 
         flippedCards = [];
         lockBoard = false;
+
         if (matchedCards === cardsArray.length) {
             messageDisplay.textContent = "Parabéns! Você encontrou todos os pares!";
         }
@@ -88,29 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         createBoard();
     }
 
-<<<<<<< HEAD
     restartBtn.addEventListener('click', restartGame);
-=======
-            function checkForMatch() {
-                const [card1, card2] = flippedCards;
-
-                if (card1.dataset.index === card2.dataset.index) {
-                    card1.classList.remove('flipped');
-                    card2.classList.remove('flipped');
-                    messageDisplay.textContent = "Carta já virada!!";
-                }else {
-                    if (card1.dataset.symbol === card2.dataset.symbol) {
-                    card1.classList.add('matched');
-                    card2.classList.add('matched');
-                    matchedCards += 2; 
-                    messageDisplay.textContent = "Par encontrado!";
-                    } else {
-                        card1.classList.remove('flipped');
-                        card2.classList.remove('flipped');
-                        messageDisplay.textContent = "Tente novamente.";
-                    }
-                }
->>>>>>> 80d6fc47c5f1d745f01d5d45106e8585aa9964b1
 
     createBoard();
 });

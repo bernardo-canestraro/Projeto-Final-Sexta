@@ -1,3 +1,4 @@
+/* Reset básico */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -5,8 +6,9 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Corpo da página */
 body {
-    background-color: #0d1117; 
+    background-color: #0d1117;
     color: #ffffff;
     display: flex;
     justify-content: center;
@@ -14,53 +16,68 @@ body {
     height: 100vh;
 }
 
-
+/* Container do jogo */
 .container {
     text-align: center;
     max-width: 600px;
 }
 
+/* Título */
 h1 {
     margin-bottom: 20px;
-    color: #58a6ff; 
+    color: #58a6ff;
 }
 
-
+/* Tabuleiro */
 .game-board {
     display: grid;
     grid-template-columns: repeat(4, 100px);
-    grid-gap: 15px;
+    gap: 15px;
     justify-content: center;
 }
 
-
+/* Cartas */
 .card {
     width: 100px;
     height: 100px;
-    background-color: #1f2937; 
+    background-color: #1f2937;
     border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: transparent;
-    font-size: 2rem;
+    position: relative;
     cursor: pointer;
     transition: transform 0.3s ease, background-color 0.3s ease;
+    overflow: hidden;
 }
 
+/* Imagem da frente (escondida por padrão) */
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
 
+/* Mostrar imagem quando a carta estiver virada ou combinada */
+.card.flipped img,
+.card.matched img {
+    display: block;
+}
+
+/* Carta virada visualmente */
 .card.flipped {
-    background-color: #3b82f6; 
-    color: #ffffff;
+    background-color: #3b82f6;
     transform: scale(1.05);
 }
 
-
+/* Carta combinada (acerto) */
 .card.matched {
-    background-color: #10b981; 
-    color: #ffffff;
+    background-color: #10b981;
     cursor: default;
 }
+
+/* Placar */
 .scoreboard {
     margin-top: 20px;
     background-color: #1e293b;
@@ -70,12 +87,14 @@ h1 {
     display: inline-block;
     font-size: 1rem;
 }
+
+/* Informações do jogo */
 .game-info {
     display: flex;
     justify-content: center;
     gap: 32px;
     align-items: center;
-    margin: 20px 0 0 0;
+    margin-top: 20px;
 }
 
 .game-info span {
@@ -83,6 +102,7 @@ h1 {
     color: #4f8cff;
 }
 
+/* Botão de reinício */
 #restartBtn {
     margin-top: 20px;
     padding: 10px 20px;
@@ -98,11 +118,12 @@ h1 {
 #restartBtn:hover {
     background: #1a237e;
 }
+
 #restartBtn:active {
     background-color: #1d4ed8;
 }
 
-
+/* Mensagem de feedback */
 #message {
     margin-top: 20px;
     font-size: 1.2rem;
